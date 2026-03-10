@@ -1,11 +1,11 @@
-const SUPABASE_URL = 'https://vobulkssljxrjoqjqqcg.supabase.co';
-const SUPABASE_ANON_KEY = 'sb_publishable_gUyu-gJlN5SjprEX3BPn5Q_-tSAD_kF'; // Usando a chave pública moderna
+const SUPABASE_URL = 'https://sfyhwvwtrdtclxdnlaow.supabase.co';
+const SUPABASE_ANON_KEY = 'sb_publishable_kAKICBWMQF95NcpX0n8lDQ_8p2ncEl6'; 
 const CONFIG_ID = '00000000-0000-0000-0000-000000000000';
 
 export const supabaseService = {
     async getConfig() {
         try {
-            const response = await fetch(`${SUPABASE_URL}/rest/v1/landing_page_config?select=config&id=eq.${CONFIG_ID}`, {
+            const response = await fetch(`${SUPABASE_URL}/rest/v1/face_slim_natto_sites?select=config&id=eq.${CONFIG_ID}`, {
                 headers: {
                     'apikey': SUPABASE_ANON_KEY,
                     'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
@@ -24,7 +24,7 @@ export const supabaseService = {
 
     async saveConfig(newConfig: any) {
         try {
-            const response = await fetch(`${SUPABASE_URL}/rest/v1/landing_page_config?id=eq.${CONFIG_ID}`, {
+            const response = await fetch(`${SUPABASE_URL}/rest/v1/face_slim_natto_sites?id=eq.${CONFIG_ID}`, {
                 method: 'PATCH',
                 headers: {
                     'apikey': SUPABASE_ANON_KEY,
