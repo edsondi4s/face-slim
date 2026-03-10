@@ -1,12 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react';
 import YouTube, { YouTubeProps } from 'react-youtube';
-import { CONFIG } from '../config';
+import { useConfig } from './ConfigProvider';
 
 interface VSLPlayerProps {
     onReveal: () => void;
 }
 
 export const VSLPlayer: React.FC<VSLPlayerProps> = ({ onReveal }) => {
+    const { config } = useConfig();
     const [player, setPlayer] = useState<any>(null);
     const [progress, setProgress] = useState(0);
     const [visualProgress, setVisualProgress] = useState(0);
@@ -36,7 +37,7 @@ export const VSLPlayer: React.FC<VSLPlayerProps> = ({ onReveal }) => {
                     setVisualProgress(Math.min(vProgress, 99.5));
 
                     // Lógica de Reveal
-                    if (currentTime >= CONFIG.vsl.revealTimeInSeconds && !revealTriggered.current) {
+                    if (currentTime >= config.vsl.revealTimeInSeconds && !revealTriggered.current) {
                         revealTriggered.current = true;
                         onReveal();
                     }
@@ -45,7 +46,7 @@ export const VSLPlayer: React.FC<VSLPlayerProps> = ({ onReveal }) => {
         }, 1000);
 
         return () => clearInterval(interval);
-    }, [player, onReveal]);
+    }, [player, onReveal, config.vsl.revealTimeInSeconds]);
 
     const onPlayerReady: YouTubeProps['onReady'] = (event) => {
         setPlayer(event.target);
@@ -68,7 +69,7 @@ export const VSLPlayer: React.FC<VSLPlayerProps> = ({ onReveal }) => {
     return (
         <div className="relative w-full aspect-video rounded-[2rem] overflow-hidden bg-black shadow-2xl group border border-white/5">
             <YouTube
-                videoId={CONFIG.vsl.videoId}
+                videoId={config.vsl.videoId}
                 opts={opts}
                 onReady={onPlayerReady}
                 className="absolute inset-0 w-full h-full"

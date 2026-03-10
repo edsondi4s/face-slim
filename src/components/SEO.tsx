@@ -1,6 +1,6 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
-import { CONFIG } from '../config';
+import { useConfig } from './ConfigProvider';
 
 interface SEOProps {
     title?: string;
@@ -17,6 +17,7 @@ export const SEO: React.FC<SEOProps> = ({
     image = "/og-image.jpg",
     url = window.location.href
 }) => {
+    const { config } = useConfig();
     return (
         <Helmet>
             {/* Primary Meta Tags */}
@@ -40,20 +41,20 @@ export const SEO: React.FC<SEOProps> = ({
             <meta property="twitter:image" content={image} />
 
             {/* Google Tag Manager */}
-            {CONFIG.tracking.googleTagManagerId && (
+            {config.tracking.googleTagManagerId && (
                 <script>
                     {`
                     (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
                     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
                     j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-                    })(window,document,'script','dataLayer','${CONFIG.tracking.googleTagManagerId}');
+                    })(window,document,'script','dataLayer','${config.tracking.googleTagManagerId}');
                     `}
                 </script>
             )}
 
             {/* Meta Pixel Code */}
-            {CONFIG.tracking.metaPixelId && (
+            {config.tracking.metaPixelId && (
                 <script>
                     {`
                     !function(f,b,e,v,n,t,s)
@@ -64,16 +65,16 @@ export const SEO: React.FC<SEOProps> = ({
                     t.src=v;s=b.getElementsByTagName(e)[0];
                     s.parentNode.insertBefore(t,s)}(window, document,'script',
                     'https://connect.facebook.net/en_US/fbevents.js');
-                    fbq('init', '${CONFIG.tracking.metaPixelId}');
+                    fbq('init', '${config.tracking.metaPixelId}');
                     fbq('track', 'PageView');
                     `}
                 </script>
             )}
-            {CONFIG.tracking.metaPixelId && (
+            {config.tracking.metaPixelId && (
                 <noscript>
                     {`
                     <img height="1" width="1" style="display:none"
-                    src="https://www.facebook.com/tr?id=${CONFIG.tracking.metaPixelId}&ev=PageView&noscript=1" />
+                    src="https://www.facebook.com/tr?id=${config.tracking.metaPixelId}&ev=PageView&noscript=1" />
                     `}
                 </noscript>
             )}

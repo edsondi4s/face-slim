@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Save, LogOut, Globe, Youtube, Shield, MessageCircle, RotateCcw } from 'lucide-react';
+import { useConfig } from './ConfigProvider';
 import { CONFIG as DEFAULT_CONFIG } from '../config';
 
 export const Settings = () => {
     const navigate = useNavigate();
-    const [config, setConfig] = useState(DEFAULT_CONFIG);
+    const { config: globalConfig, updateConfig, isLoading } = useConfig();
+    const [config, setConfig] = useState(globalConfig);
     const [isSaved, setIsSaved] = useState(false);
 
     useEffect(() => {
@@ -13,46 +15,25 @@ export const Settings = () => {
         if (!isAuth) {
             navigate('/configs');
         }
-
-        const savedConfig = localStorage.getItem('face_slim_custom_config');
-        if (savedConfig) {
-            try {
-                setConfig(JSON.parse(savedConfig));
-            } catch (e) {
-                console.error("Erro ao carregar config salva", e);
-            }
-        }
     }, [navigate]);
+
+    // Atualiza o estado local quando a config global carregar
+    useEffect(() => {
+        setConfig(globalConfig);
+    }, [globalConfig]);
 
     const handleSave = async () => {
         try {
-            const isLocal = window.location.hostname === 'localhost';
+            await updateConfig(config);
             
-            if (isLocal) {
-                // Salva no servidor local apenas durante o desenvolvimento
-                const response = await fetch('http://localhost:3001/api/save-config', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(config)
-                });
-
-                if (!response.ok) console.warn('Falha ao sincronizar com servidor local');
-            }
-
-            // Sempre mantém no localStorage para persistência no navegador atual
-            localStorage.setItem('face_slim_custom_config', JSON.stringify(config));
-
             setIsSaved(true);
             setTimeout(() => {
                 setIsSaved(false);
-                window.location.reload();
+                // Não precisa de reload, o provider atualiza o estado
             }, 1000);
         } catch (error) {
             console.error('Erro ao salvar:', error);
-            // Mostra o alerta apenas em ambiente local se houver falha crítica
-            if (window.location.hostname === 'localhost') {
-                alert('Erro ao sincronizar com o servidor local. Verifique se o backend está rodando.');
-            }
+            alert('Erro ao salvar no banco de dados. Verifique sua conexão.');
         }
     };
 

@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
 import { Menu, X, MessageCircle } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
-import { CONFIG } from '../config';
+import { useConfig } from './ConfigProvider';
 
 interface NavbarProps {
   isContentReleased: boolean;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({ isContentReleased }) => {
+  const { config } = useConfig();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   return (
     <nav className="glass border-b border-stone-200/50 sticky top-0 z-50 transition-all duration-500">
@@ -31,7 +33,7 @@ export const Navbar: React.FC<NavbarProps> = ({ isContentReleased }) => {
               >
                 <div className="hidden md:block">
                   <a
-                    href={CONFIG.whatsappUrl}
+                    href={config.whatsappUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="bg-stone-900 hover:bg-stone-800 text-white px-6 py-2.5 rounded-full text-sm font-semibold transition-all shadow-lg hover:shadow-xl active:scale-95 uppercase tracking-wider flex items-center gap-2"
@@ -70,7 +72,7 @@ export const Navbar: React.FC<NavbarProps> = ({ isContentReleased }) => {
               </p>
               <div className="pt-4">
                 <a
-                  href={CONFIG.whatsappUrl}
+                  href={config.whatsappUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={() => setIsMenuOpen(false)}

@@ -10,12 +10,13 @@ import { SEO } from './SEO';
 import { FadeInView } from './FadeInView';
 import { FloatingCTA } from './FloatingCTA';
 import { MessageCircle } from 'lucide-react';
-import { CONFIG } from '../config';
 import { VSLPlayer } from './VSLPlayer';
+import { useConfig } from './ConfigProvider';
 
 const STORAGE_KEY = 'face_slim_content_released';
 
 export const LandingPage = () => {
+    const { config } = useConfig();
     const [showFloatingCTA, setShowFloatingCTA] = useState(false);
     const [isContentReleased, setIsContentReleased] = useState(() => {
         return localStorage.getItem(STORAGE_KEY) === 'true';
@@ -90,7 +91,7 @@ export const LandingPage = () => {
             {isContentReleased && (
                 <div className="md:hidden fixed bottom-0 left-0 w-full p-4 z-40 bg-white/80 backdrop-blur-lg border-t border-stone-100">
                     <a
-                        href={CONFIG.whatsappUrl}
+                        href={config.whatsappUrl}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="flex items-center justify-center gap-3 w-full text-center bg-stone-900 text-white py-4 rounded-xl font-bold uppercase tracking-widest shadow-xl active:scale-95 transition-transform"

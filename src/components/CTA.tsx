@@ -1,8 +1,9 @@
 import React from 'react';
 import { ArrowRight, MessageCircle } from 'lucide-react';
-import { CONFIG } from '../config';
+import { useConfig } from './ConfigProvider';
 
 export const CTA = () => {
+  const { config } = useConfig();
   return (
     <section id="agendar" className="relative py-24 overflow-hidden bg-stone-900">
       {/* Background Decorative Elements - Expanded for full width */}
@@ -27,7 +28,7 @@ export const CTA = () => {
 
             <div className="flex flex-col items-center justify-center gap-6">
               <a
-                href={CONFIG.whatsappUrl}
+                href={config.whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-brand-gold hover:bg-amber-500 text-stone-900 px-12 py-5 rounded-full text-sm font-bold transition-all hover:scale-105 shadow-2xl hover:shadow-brand-gold/40 uppercase tracking-widest flex items-center gap-3 group"
