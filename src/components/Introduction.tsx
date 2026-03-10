@@ -7,9 +7,9 @@ export const Introduction = () => {
       <div className="grid lg:grid-cols-2 gap-20 items-center">
         <div className="relative">
           <div className="aspect-[4/5] rounded-[3rem] overflow-hidden premium-shadow">
-            <img 
-              src="https://images.unsplash.com/photo-1596755389378-c31d21fd1273?auto=format&fit=crop&q=80&w=1000" 
-              alt="Natural Beauty" 
+            <img
+              src="https://images.unsplash.com/photo-1596755389378-c31d21fd1273?auto=format&fit=crop&q=80&w=1000"
+              alt="Modelo sorridente exibindo resultados naturais de rejuvenescimento facial"
               className="w-full h-full object-cover"
               referrerPolicy="no-referrer"
             />

@@ -27,13 +27,13 @@ export const HeroVideo = () => {
       <div className="relative max-w-5xl mx-auto px-4">
         <div className="relative video-shadow rounded-[2rem] overflow-hidden bg-stone-900 aspect-video group cursor-pointer">
           {/* Video Poster Image Placeholder */}
-          <img 
-            src="https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?auto=format&fit=crop&q=80&w=2000" 
-            alt="Face Slim Treatment"
+          <img
+            src="https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?auto=format&fit=crop&q=80&w=2000"
+            alt="Profissional realizando procedimento de estética facial premium em paciente"
             className="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700"
             referrerPolicy="no-referrer"
           />
-          
+
           <div className="absolute inset-0 flex items-center justify-center bg-stone-900/20 group-hover:bg-stone-900/10 transition-colors">
             <div className="text-center">
               <div className="w-24 h-24 glass rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform shadow-2xl">
@@ -46,12 +46,12 @@ export const HeroVideo = () => {
             </div>
           </div>
         </div>
-        
+
         {/* Decorative elements */}
         <div className="absolute -bottom-6 -right-6 w-32 h-32 border-r-2 border-b-2 border-brand-gold/30 rounded-br-[2rem] -z-10" />
         <div className="absolute -top-6 -left-6 w-32 h-32 border-l-2 border-t-2 border-brand-gold/30 rounded-tl-[2rem] -z-10" />
       </div>
-      
+
       <div className="flex flex-col items-center gap-4 pt-12">
         <p className="text-xs font-bold uppercase tracking-[0.3em] text-stone-400">Scroll para explorar</p>
         <div className="w-px h-16 bg-gradient-to-b from-stone-300 to-transparent" />
