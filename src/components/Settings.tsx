@@ -26,16 +26,20 @@ export const Settings = () => {
 
     const handleSave = async () => {
         try {
-            // Salva no servidor para persistência global (guia anônima, etc)
-            const response = await fetch('http://localhost:3001/api/save-config', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(config)
-            });
+            const isLocal = window.location.hostname === 'localhost';
+            
+            if (isLocal) {
+                // Salva no servidor local apenas durante o desenvolvimento
+                const response = await fetch('http://localhost:3001/api/save-config', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(config)
+                });
 
-            if (!response.ok) throw new Error('Falha ao salvar no servidor');
+                if (!response.ok) console.warn('Falha ao sincronizar com servidor local');
+            }
 
-            // Mantém no localStorage para feedback instantâneo local
+            // Sempre mantém no localStorage para persistência no navegador atual
             localStorage.setItem('face_slim_custom_config', JSON.stringify(config));
 
             setIsSaved(true);
@@ -44,8 +48,11 @@ export const Settings = () => {
                 window.location.reload();
             }, 1000);
         } catch (error) {
-            console.error(error);
-            alert('Erro ao sincronizar com o servidor. Verifique se o backend está rodando.');
+            console.error('Erro ao salvar:', error);
+            // Mostra o alerta apenas em ambiente local se houver falha crítica
+            if (window.location.hostname === 'localhost') {
+                alert('Erro ao sincronizar com o servidor local. Verifique se o backend está rodando.');
+            }
         }
     };
 
