@@ -24,7 +24,7 @@ export const Settings = () => {
         setConfig(globalConfig);
     }, [globalConfig]);
 
-    const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>, type: 'faviconUrl' | 'logoUrl') => {
         const file = e.target.files?.[0];
         if (!file) return;
 
@@ -37,12 +37,13 @@ export const Settings = () => {
 
         setIsUploading(true);
         try {
-            const fileName = `favicon-${Date.now()}.${file.name.split('.').pop()}`;
+            const prefix = type === 'faviconUrl' ? 'favicon' : 'logo';
+            const fileName = `${prefix}-${Date.now()}.${file.name.split('.').pop()}`;
             const publicUrl = await supabaseService.uploadAsset(file, fileName);
-            setConfig({ ...config, faviconUrl: publicUrl });
+            setConfig({ ...config, [type]: publicUrl });
         } catch (error) {
             console.error('Erro no upload:', error);
-            alert('Erro ao fazer upload do favicon.');
+            alert(`Erro ao fazer upload do ${type === 'faviconUrl' ? 'favicon' : 'logotipo'}.`);
         } finally {
             setIsUploading(false);
         }
@@ -50,12 +51,21 @@ export const Settings = () => {
 
     const handleSave = async () => {
         try {
-            await updateConfig(config);
+            // Gera o whatsappUrl a partir do número e mensagem
+            const cleanNumber = (config.whatsappNumber || '').replace(/\D/g, '');
+            const encodedMessage = encodeURIComponent(config.whatsappMessage || '');
+            const generatedUrl = `https://wa.me/${cleanNumber}${encodedMessage ? `?text=${encodedMessage}` : ''}`;
+            
+            const configToSave = {
+                ...config,
+                whatsappUrl: generatedUrl
+            };
+
+            await updateConfig(configToSave);
             
             setIsSaved(true);
             setTimeout(() => {
                 setIsSaved(false);
-                // Não precisa de reload, o provider atualiza o estado
             }, 1000);
         } catch (error) {
             console.error('Erro ao salvar:', error);
@@ -135,18 +145,31 @@ export const Settings = () => {
                         <section className="bg-white rounded-[2rem] p-8 shadow-lg border border-stone-200">
                             <div className="flex items-center gap-3 mb-8 text-stone-900 border-b border-stone-100 pb-4">
                                 <MessageCircle className="text-brand-gold" size={24} />
-                                <h3 className="text-xl font-medium">Link do WhatsApp</h3>
+                                <h3 className="text-xl font-medium">Configuração do WhatsApp</h3>
                             </div>
-                            <div>
-                                <label className="block text-xs font-bold uppercase tracking-widest text-stone-400 mb-2 ml-1">URL de Redirecionamento</label>
-                                <input
-                                    type="text"
-                                    value={config.whatsappUrl}
-                                    onChange={(e) => setConfig({ ...config, whatsappUrl: e.target.value })}
-                                    className="w-full bg-stone-50 border border-stone-200 rounded-xl py-4 px-4 text-stone-900 focus:outline-none focus:ring-2 focus:ring-brand-gold/20 focus:border-brand-gold transition-all"
-                                    placeholder="https://wa.me/..."
-                                />
-                                <p className="mt-2 text-[10px] text-stone-400 uppercase tracking-wider font-bold italic">Dica: Inclua o DDD e a mensagem personalizada.</p>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label className="block text-xs font-bold uppercase tracking-widest text-stone-400 mb-2 ml-1">Número (com DDD)</label>
+                                    <input
+                                        type="text"
+                                        value={config.whatsappNumber || ''}
+                                        onChange={(e) => setConfig({ ...config, whatsappNumber: e.target.value })}
+                                        className="w-full bg-stone-50 border border-stone-200 rounded-xl py-4 px-4 text-stone-900 focus:outline-none focus:ring-2 focus:ring-brand-gold/20 focus:border-brand-gold transition-all"
+                                        placeholder="5511999999999"
+                                    />
+                                    <p className="mt-2 text-[10px] text-stone-400 uppercase tracking-wider font-bold italic">Apenas números. Ex: 5511999999999</p>
+                                </div>
+                                <div>
+                                    <label className="block text-xs font-bold uppercase tracking-widest text-stone-400 mb-2 ml-1">Mensagem de Saudação</label>
+                                    <input
+                                        type="text"
+                                        value={config.whatsappMessage || ''}
+                                        onChange={(e) => setConfig({ ...config, whatsappMessage: e.target.value })}
+                                        className="w-full bg-stone-50 border border-stone-200 rounded-xl py-4 px-4 text-stone-900 focus:outline-none focus:ring-2 focus:ring-brand-gold/20 focus:border-brand-gold transition-all"
+                                        placeholder="Olá! Gostaria de agendar..."
+                                    />
+                                    <p className="mt-2 text-[10px] text-stone-400 uppercase tracking-wider font-bold italic">Mensagem inicial que o cliente enviará.</p>
+                                </div>
                             </div>
                         </section>
 
@@ -183,13 +206,55 @@ export const Settings = () => {
                                             <input
                                                 type="file"
                                                 className="hidden"
-                                                onChange={handleFileUpload}
+                                                onChange={(e) => handleFileUpload(e, 'faviconUrl')}
                                                 accept=".ico,.png,.svg"
                                                 disabled={isUploading}
                                             />
                                         </label>
                                     </div>
                                     <p className="mt-2 text-[10px] text-stone-400 uppercase tracking-wider font-bold italic">O ícone que aparece na aba do navegador. Sugerido: 32x32px.</p>
+                                </div>
+                            </div>
+
+                            <div className="h-px bg-stone-100 my-8 w-full" />
+
+                            {/* Logo Upload */}
+                            <div className="flex flex-col md:flex-row gap-6 items-start">
+                                <div className="w-full md:w-48 h-20 bg-stone-50 border-2 border-dashed border-stone-200 rounded-xl flex items-center justify-center overflow-hidden shrink-0">
+                                    {config.logoUrl ? (
+                                        <img src={config.logoUrl} alt="Logo Preview" className="h-10 w-auto object-contain" />
+                                    ) : (
+                                        <div className="flex flex-col items-center gap-1">
+                                            <ImageIcon className="text-stone-300" size={24} />
+                                            <span className="text-[8px] text-stone-400 font-bold uppercase tracking-widest">Sem Logo</span>
+                                        </div>
+                                    )}
+                                </div>
+                                <div className="flex-grow w-full">
+                                    <label className="block text-xs font-bold uppercase tracking-widest text-stone-400 mb-2 ml-1">Upload do Logotipo (PNG ou SVG)</label>
+                                    <div className="flex gap-4">
+                                        <div className="relative flex-grow">
+                                            <input
+                                                type="text"
+                                                value={config.logoUrl || ''}
+                                                className="w-full bg-stone-50 border border-stone-200 rounded-xl py-4 px-4 text-stone-900 focus:outline-none focus:ring-2 focus:ring-brand-gold/20 focus:border-brand-gold transition-all"
+                                                placeholder="URL do Logotipo aparecerá aqui"
+                                                readOnly
+                                            />
+                                        </div>
+                                        <label className={`shrink-0 flex items-center gap-2 px-6 py-4 rounded-xl font-bold uppercase tracking-widest transition-all cursor-pointer shadow-sm active:scale-95 ${isUploading ? 'bg-stone-100 text-stone-400 cursor-not-allowed' : 'bg-stone-900 hover:bg-stone-800 text-white'}`}>
+                                            <Upload size={18} className={isUploading ? 'animate-bounce' : ''} />
+                                            {isUploading ? 'Uploading...' : 'Upload'}
+                                            <input
+                                                type="file"
+                                                className="hidden"
+                                                onChange={(e) => handleFileUpload(e, 'logoUrl')}
+                                                accept=".png,.svg"
+                                                disabled={isUploading}
+                                            />
+                                        </label>
+                                    </div>
+                                    <p className="mt-2 text-[10px] text-stone-400 uppercase tracking-wider font-bold italic">Exibido na Navbar e Rodapé. Mantém proporção original.</p>
                                 </div>
                             </div>
                         </section>

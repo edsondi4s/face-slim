@@ -4,6 +4,8 @@
  */
 const DEFAULT_CONFIG = {
     "whatsappUrl": "https://wa.me/5511999999999?text=Olá! Gostaria de agendar uma avaliação Face Slim.",
+    "whatsappNumber": "5511999999999",
+    "whatsappMessage": "Olá! Gostaria de agendar uma avaliação Face Slim.",
     "vsl": {
         "videoId": "HJsrMTV8UjI",
         "revealTimeInSeconds": 10
@@ -12,7 +14,8 @@ const DEFAULT_CONFIG = {
         "metaPixelId": "",
         "googleTagManagerId": ""
     },
-    "faviconUrl": ""
+    "faviconUrl": "",
+    "logoUrl": ""
 };
 
 // Carrega configurações personalizadas do localStorage se existirem

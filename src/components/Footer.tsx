@@ -1,13 +1,21 @@
 import React from 'react';
+import { useConfig } from './ConfigProvider';
 
 export const Footer = () => {
+  const { config } = useConfig();
   return (
     <footer className="bg-stone-50 text-stone-600 py-12 mt-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col items-center text-center mb-12">
           <div className="flex items-center gap-3 mb-6">
-            <div className="w-10 h-10 bg-stone-900 rounded-full flex items-center justify-center text-white font-serif text-xl">FS</div>
-            <span className="font-serif text-2xl text-stone-900 tracking-wide">Face Slim</span>
+            {config.logoUrl ? (
+              <img src={config.logoUrl} alt="Face Slim Logo" className="h-12 w-auto object-contain" />
+            ) : (
+              <>
+                <div className="w-10 h-10 bg-stone-900 rounded-full flex items-center justify-center text-white font-serif text-xl">FS</div>
+                <span className="font-serif text-2xl text-stone-900 tracking-wide">Face Slim</span>
+              </>
+            )}
           </div>
           <p className="text-stone-500 max-w-sm font-light leading-relaxed">
             Dossiê clínico exclusivo sobre o método de rejuvenescimento estrutural que resgata sua identidade com naturalidade e elegância.
