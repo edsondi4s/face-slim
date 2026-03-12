@@ -45,5 +45,30 @@ export const supabaseService = {
             console.error('Erro no saveConfig:', error);
             throw error;
         }
+    },
+
+    async uploadAsset(file: File, path: string) {
+        try {
+            const response = await fetch(`${SUPABASE_URL}/storage/v1/object/assets/${path}`, {
+                method: 'POST',
+                headers: {
+                    'apikey': SUPABASE_ANON_KEY,
+                    'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+                    'x-upsert': 'true'
+                },
+                body: file
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.message || 'Falha no upload do arquivo');
+            }
+
+            // Retorna a URL pública
+            return `${SUPABASE_URL}/storage/v1/object/public/assets/${path}`;
+        } catch (error) {
+            console.error('Erro no uploadAsset:', error);
+            throw error;
+        }
     }
 };

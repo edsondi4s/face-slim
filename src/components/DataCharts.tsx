@@ -48,7 +48,7 @@ export const DataCharts = () => {
         borderDash: [5, 5],
         tension: 0.4,
         pointRadius: 4,
-        pointBackgroundColor: '#fff',
+        pointBackgroundColor: '#1c1917',
         pointBorderWidth: 2,
       },
       {
@@ -78,7 +78,7 @@ export const DataCharts = () => {
             size: 11,
             weight: 500 as const,
           },
-          color: '#78716c',
+          color: '#a8a29e',
         },
       },
       tooltip: {
@@ -93,7 +93,7 @@ export const DataCharts = () => {
       y: {
         beginAtZero: true,
         grid: {
-          color: '#f5f5f4',
+          color: 'rgba(255, 255, 255, 0.05)',
         },
         border: {
           display: false,
@@ -121,41 +121,41 @@ export const DataCharts = () => {
   return (
     <section id="dados" className="py-24 space-y-20">
       <div className="text-center max-w-3xl mx-auto px-4">
-        <h2 className="text-4xl md:text-5xl font-medium mb-6 text-stone-900">Eficácia em Perspectiva</h2>
-        <p className="text-stone-500 text-lg font-light">
+        <h2 className="text-4xl md:text-5xl font-medium mb-6 text-white">Eficácia em Perspectiva</h2>
+        <p className="text-stone-400 text-lg font-light">
           A diferença entre tratar consequências temporárias e investir <br className="hidden md:block" />
           em uma restauração estrutural definitiva.
         </p>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch px-4">
-        <div className="bg-white premium-shadow rounded-[2.5rem] p-10 flex flex-col">
+        <div className="bg-stone-900 premium-shadow border border-white/5 rounded-xl p-10 flex flex-col">
           <div className="mb-10">
             <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-brand-gold mb-2 block">Longevidade</span>
-            <h3 className="text-2xl font-medium text-stone-900">Durabilidade Comparada</h3>
+            <h3 className="text-2xl font-medium text-white">Durabilidade Comparada</h3>
             <p className="text-sm text-stone-400 mt-2 font-light">Expectativa de resultados visíveis em meses.</p>
           </div>
           <div className="h-[350px] w-full flex-grow">
             <Bar data={barData} options={{ ...options, plugins: { ...options.plugins, legend: { display: false } } }} />
           </div>
-          <div className="mt-10 pt-6 border-t border-stone-50 flex items-center justify-between text-[11px] text-stone-400 uppercase tracking-widest font-bold">
+          <div className="mt-10 pt-6 border-t border-white/5 flex items-center justify-between text-[11px] text-stone-500 uppercase tracking-widest font-bold">
             <span>Paliativo</span>
             <span>Definitivo</span>
           </div>
         </div>
 
-        <div className="bg-white premium-shadow rounded-[2.5rem] p-10 flex flex-col">
+        <div className="bg-stone-900 premium-shadow border border-white/5 rounded-xl p-10 flex flex-col">
           <div className="mb-10">
             <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-brand-gold mb-2 block">Estabilidade</span>
-            <h3 className="text-2xl font-medium text-stone-900">Manutenção de Volume</h3>
+            <h3 className="text-2xl font-medium text-white">Manutenção de Volume</h3>
             <p className="text-sm text-stone-400 mt-2 font-light">Número de intervenções necessárias ao longo de 10 anos.</p>
           </div>
           <div className="h-[350px] w-full flex-grow">
             <Line data={lineData} options={options} />
           </div>
-          <div className="mt-10 pt-6 border-t border-stone-50 flex items-center gap-4 text-[11px] text-stone-400 font-medium">
+          <div className="mt-10 pt-6 border-t border-white/5 flex items-center gap-4 text-[11px] text-stone-500 font-medium">
             <div className="flex items-center gap-2">
-              <div className="w-3 h-px bg-stone-300 border-dashed border-t" />
+              <div className="w-3 h-px bg-stone-700 border-dashed border-t" />
               <span>Ciclo de Retoques</span>
             </div>
             <div className="flex items-center gap-2">

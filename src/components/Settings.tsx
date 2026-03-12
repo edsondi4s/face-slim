@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Save, LogOut, Globe, Youtube, Shield, MessageCircle, RotateCcw } from 'lucide-react';
+import { Save, LogOut, Globe, Youtube, Shield, MessageCircle, RotateCcw, Upload, ImageIcon } from 'lucide-react';
 import { useConfig } from './ConfigProvider';
 import { CONFIG as DEFAULT_CONFIG } from '../config';
+import { supabaseService } from '../lib/supabaseService';
 
 export const Settings = () => {
     const navigate = useNavigate();
     const { config: globalConfig, updateConfig, isLoading } = useConfig();
     const [config, setConfig] = useState(globalConfig);
     const [isSaved, setIsSaved] = useState(false);
+    const [isUploading, setIsUploading] = useState(false);
 
     useEffect(() => {
         const isAuth = localStorage.getItem('face_slim_admin_auth') === 'true';
@@ -21,6 +23,30 @@ export const Settings = () => {
     useEffect(() => {
         setConfig(globalConfig);
     }, [globalConfig]);
+
+    const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0];
+        if (!file) return;
+
+        // Validar tipo de arquivo
+        const allowedTypes = ['image/x-icon', 'image/png', 'image/svg+xml'];
+        if (!allowedTypes.includes(file.type)) {
+            alert('Por favor, selecione um arquivo .ico, .png ou .svg');
+            return;
+        }
+
+        setIsUploading(true);
+        try {
+            const fileName = `favicon-${Date.now()}.${file.name.split('.').pop()}`;
+            const publicUrl = await supabaseService.uploadAsset(file, fileName);
+            setConfig({ ...config, faviconUrl: publicUrl });
+        } catch (error) {
+            console.error('Erro no upload:', error);
+            alert('Erro ao fazer upload do favicon.');
+        } finally {
+            setIsUploading(false);
+        }
+    };
 
     const handleSave = async () => {
         try {
@@ -121,6 +147,50 @@ export const Settings = () => {
                                     placeholder="https://wa.me/..."
                                 />
                                 <p className="mt-2 text-[10px] text-stone-400 uppercase tracking-wider font-bold italic">Dica: Inclua o DDD e a mensagem personalizada.</p>
+                            </div>
+                        </section>
+
+                        {/* Branding Section */}
+                        <section className="bg-white rounded-[2rem] p-8 shadow-lg border border-stone-200">
+                            <div className="flex items-center gap-3 mb-8 text-stone-900 border-b border-stone-100 pb-4">
+                                <Globe className="text-brand-gold" size={24} />
+                                <h3 className="text-xl font-medium">Identidade Visual</h3>
+                            </div>
+                            <div className="flex flex-col md:flex-row gap-6 items-start">
+                                <div className="w-20 h-20 bg-stone-50 border-2 border-dashed border-stone-200 rounded-xl flex items-center justify-center overflow-hidden shrink-0">
+                                    {config.faviconUrl ? (
+                                        <img src={config.faviconUrl} alt="Favicon Preview" className="w-10 h-10 object-contain" />
+                                    ) : (
+                                        <ImageIcon className="text-stone-300" size={32} />
+                                    )}
+                                </div>
+                                <div className="flex-grow w-full">
+                                    <label className="block text-xs font-bold uppercase tracking-widest text-stone-400 mb-2 ml-1">Upload do Favicon (.ico, .png, .svg)</label>
+                                    <div className="flex gap-4">
+                                        <div className="relative flex-grow">
+                                            <input
+                                                type="text"
+                                                value={config.faviconUrl || ''}
+                                                onChange={(e) => setConfig({ ...config, faviconUrl: e.target.value })}
+                                                className="w-full bg-stone-50 border border-stone-200 rounded-xl py-4 px-4 text-stone-900 focus:outline-none focus:ring-2 focus:ring-brand-gold/20 focus:border-brand-gold transition-all"
+                                                placeholder="URL do Favicon aparecerá aqui após o upload"
+                                                readOnly
+                                            />
+                                        </div>
+                                        <label className={`shrink-0 flex items-center gap-2 px-6 py-4 rounded-xl font-bold uppercase tracking-widest transition-all cursor-pointer shadow-sm active:scale-95 ${isUploading ? 'bg-stone-100 text-stone-400 cursor-not-allowed' : 'bg-stone-900 hover:bg-stone-800 text-white'}`}>
+                                            <Upload size={18} className={isUploading ? 'animate-bounce' : ''} />
+                                            {isUploading ? 'Fazendo Upload...' : 'Upload'}
+                                            <input
+                                                type="file"
+                                                className="hidden"
+                                                onChange={handleFileUpload}
+                                                accept=".ico,.png,.svg"
+                                                disabled={isUploading}
+                                            />
+                                        </label>
+                                    </div>
+                                    <p className="mt-2 text-[10px] text-stone-400 uppercase tracking-wider font-bold italic">O ícone que aparece na aba do navegador. Sugerido: 32x32px.</p>
+                                </div>
                             </div>
                         </section>
 

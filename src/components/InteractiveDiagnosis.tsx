@@ -42,8 +42,8 @@ export const InteractiveDiagnosis = () => {
   return (
     <section id="diagnostico" className="py-24">
       <div className="max-w-4xl mx-auto text-center mb-16 px-4">
-        <h2 className="text-4xl md:text-5xl font-medium mb-6 text-stone-900">Anatomia do Envelhecimento</h2>
-        <p className="text-stone-500 text-lg font-light">
+        <h2 className="text-4xl md:text-5xl font-medium mb-6 text-white">Anatomia do Envelhecimento</h2>
+        <p className="text-stone-400 text-lg font-light">
           Entenda a causa real por trás de cada sinal e como a abordagem estrutural <br className="hidden md:block" />
           é a única solução definitiva para o rejuvenescimento natural.
         </p>
@@ -58,15 +58,15 @@ export const InteractiveDiagnosis = () => {
                 key={key}
                 onClick={() => setActiveTab(key)}
                 className={cn(
-                  "w-full text-left px-6 py-5 rounded-2xl transition-all duration-300 flex items-center gap-4 group",
+                  "w-full text-left px-6 py-5 rounded-xl transition-all duration-300 flex items-center gap-4 group",
                   activeTab === key
-                    ? "bg-white premium-shadow text-stone-900 translate-x-2"
-                    : "text-stone-400 hover:text-stone-600 hover:bg-stone-100/50"
+                    ? "bg-stone-900 border border-white/5 text-white translate-x-2"
+                    : "text-stone-500 hover:text-stone-300 hover:bg-stone-900/30"
                 )}
               >
                 <div className={cn(
-                  "w-10 h-10 rounded-xl flex items-center justify-center transition-colors",
-                  activeTab === key ? "bg-stone-900 text-white" : "bg-stone-100 text-stone-400 group-hover:bg-stone-200"
+                  "w-10 h-10 rounded-lg flex items-center justify-center transition-colors",
+                  activeTab === key ? "bg-brand-gold text-stone-950" : "bg-stone-900 text-stone-500 group-hover:bg-stone-800"
                 )}>
                   <Icon size={20} />
                 </div>
@@ -77,9 +77,9 @@ export const InteractiveDiagnosis = () => {
         </div>
 
         <div className="lg:col-span-8 px-4">
-          <div className="bg-white premium-shadow rounded-[2.5rem] p-8 md:p-12 min-h-[450px] relative overflow-hidden">
+          <div className="bg-stone-900 border border-white/5 premium-shadow rounded-[1rem] p-8 md:p-12 min-h-[450px] relative overflow-hidden">
             {/* Decorative background */}
-            <div className="absolute top-0 right-0 w-64 h-64 bg-stone-50 rounded-full -mr-32 -mt-32 -z-10" />
+            <div className="absolute top-0 right-0 w-64 h-64 bg-stone-800/10 rounded-full -mr-32 -mt-32 -z-10" />
             
             <AnimatePresence mode="wait">
               <motion.div
@@ -95,28 +95,28 @@ export const InteractiveDiagnosis = () => {
                   <span className="text-xs font-bold uppercase tracking-[0.3em] text-brand-gold">Diagnóstico Clínico</span>
                 </div>
 
-                <h3 className="text-4xl font-medium text-stone-900 mb-10">
+                <h3 className="text-4xl font-medium text-white mb-10">
                   {symptomData[activeTab].title}
                 </h3>
 
                 <div className="grid md:grid-cols-2 gap-12 flex-grow">
                   <div className="space-y-8">
                     <div>
-                      <span className="block text-[10px] font-bold text-stone-400 uppercase tracking-[0.2em] mb-3">Manifestação</span>
-                      <p className="text-stone-600 leading-relaxed">{symptomData[activeTab].dor}</p>
+                      <span className="block text-[10px] font-bold text-stone-500 uppercase tracking-[0.2em] mb-3">Manifestação</span>
+                      <p className="text-stone-400 leading-relaxed font-light text-lg">{symptomData[activeTab].dor}</p>
                     </div>
                     <div>
-                      <span className="block text-[10px] font-bold text-stone-400 uppercase tracking-[0.2em] mb-3">Causa Estrutural</span>
-                      <p className="text-stone-600 leading-relaxed">{symptomData[activeTab].causa}</p>
+                      <span className="block text-[10px] font-bold text-stone-500 uppercase tracking-[0.2em] mb-3">Causa Estrutural</span>
+                      <p className="text-stone-400 leading-relaxed font-light text-lg">{symptomData[activeTab].causa}</p>
                     </div>
                   </div>
 
-                  <div className="bg-stone-50 rounded-3xl p-8 border border-stone-100">
-                    <span className="block text-[10px] font-bold text-stone-900 uppercase tracking-[0.2em] mb-4">Abordagem Face Slim</span>
-                    <p className="text-stone-800 font-medium leading-relaxed text-lg italic serif">
+                  <div className="bg-stone-950 rounded-2xl p-8 border border-white/5">
+                    <span className="block text-[10px] font-bold text-brand-gold uppercase tracking-[0.2em] mb-4">Abordagem Face Slim</span>
+                    <p className="text-stone-200 font-medium leading-relaxed text-lg italic serif">
                       "{symptomData[activeTab].solucao}"
                     </p>
-                    <div className="mt-8 flex items-center gap-2 text-stone-400 text-xs">
+                    <div className="mt-8 flex items-center gap-2 text-stone-500 text-xs uppercase tracking-widest font-bold">
                       <div className="w-1.5 h-1.5 rounded-full bg-brand-gold" />
                       Restauração definitiva
                     </div>

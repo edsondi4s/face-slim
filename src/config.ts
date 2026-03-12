@@ -11,7 +11,8 @@ const DEFAULT_CONFIG = {
     "tracking": {
         "metaPixelId": "",
         "googleTagManagerId": ""
-    }
+    },
+    "faviconUrl": ""
 };
 
 // Carrega configurações personalizadas do localStorage se existirem

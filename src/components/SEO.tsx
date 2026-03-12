@@ -20,6 +20,10 @@ export const SEO: React.FC<SEOProps> = ({
     const { config } = useConfig();
     return (
         <Helmet>
+            {/* Favicon */}
+            {config.faviconUrl && <link rel="icon" href={config.faviconUrl} />}
+            {!config.faviconUrl && <link rel="icon" href="/favicon.ico" />}
+
             {/* Primary Meta Tags */}
             <title>{title}</title>
             <meta name="title" content={title} />

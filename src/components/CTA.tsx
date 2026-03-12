@@ -12,7 +12,7 @@ export const CTA = () => {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-5xl mx-auto bg-white/5 backdrop-blur-xl border border-white/10 rounded-[3rem] p-12 md:p-20 text-center relative overflow-hidden">
+        <div className="max-w-5xl mx-auto bg-stone-900 border border-white/5 rounded-xl p-12 md:p-20 text-center relative overflow-hidden">
           {/* Subtle glow */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-brand-gold/20 rounded-full blur-[100px] -z-10" />
 
@@ -20,7 +20,7 @@ export const CTA = () => {
             <span className="text-[10px] font-bold uppercase tracking-[0.4em] text-brand-gold mb-6 block">Inicie sua Jornada</span>
             <h2 className="text-4xl md:text-6xl font-medium mb-8 text-white leading-tight">
               Pronta para reencontrar sua <br className="hidden md:block" />
-              <span className="italic font-light text-stone-400">melhor versão?</span>
+              <span className="italic font-light text-stone-500">melhor versão?</span>
             </h2>
             <p className="text-stone-400 mb-12 text-lg font-light leading-relaxed max-w-2xl mx-auto">
               Agende uma avaliação estrutural personalizada e descubra como o Método Face Slim pode transformar sua autoimagem com naturalidade e elegância.
