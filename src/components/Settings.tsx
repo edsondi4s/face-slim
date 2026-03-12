@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Save, LogOut, Globe, Youtube, Shield, MessageCircle, RotateCcw, Upload, ImageIcon } from 'lucide-react';
+import { Save, LogOut, Globe, Youtube, Shield, MessageCircle, RotateCcw, Upload, ImageIcon, Trash2 } from 'lucide-react';
 import { useConfig } from './ConfigProvider';
 import { CONFIG as DEFAULT_CONFIG } from '../config';
 import { supabaseService } from '../lib/supabaseService';
@@ -23,6 +23,12 @@ export const Settings = () => {
     useEffect(() => {
         setConfig(globalConfig);
     }, [globalConfig]);
+
+    const handleRemoveAsset = (type: 'faviconUrl' | 'logoUrl') => {
+        if (window.confirm(`Deseja remover o ${type === 'faviconUrl' ? 'favicon' : 'logotipo'}?`)) {
+            setConfig({ ...config, [type]: '' });
+        }
+    };
 
     const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>, type: 'faviconUrl' | 'logoUrl') => {
         const file = e.target.files?.[0];
@@ -211,6 +217,15 @@ export const Settings = () => {
                                                 disabled={isUploading}
                                             />
                                         </label>
+                                        {config.faviconUrl && (
+                                            <button
+                                                onClick={() => handleRemoveAsset('faviconUrl')}
+                                                className="shrink-0 flex items-center justify-center p-4 bg-red-50 text-red-500 hover:bg-red-100 rounded-xl transition-all shadow-sm active:scale-95"
+                                                title="Remover Favicon"
+                                            >
+                                                <Trash2 size={18} />
+                                            </button>
+                                        )}
                                     </div>
                                     <p className="mt-2 text-[10px] text-stone-400 uppercase tracking-wider font-bold italic">O ícone que aparece na aba do navegador. Sugerido: 32x32px.</p>
                                 </div>
@@ -253,6 +268,15 @@ export const Settings = () => {
                                                 disabled={isUploading}
                                             />
                                         </label>
+                                        {config.logoUrl && (
+                                            <button
+                                                onClick={() => handleRemoveAsset('logoUrl')}
+                                                className="shrink-0 flex items-center justify-center p-4 bg-red-50 text-red-500 hover:bg-red-100 rounded-xl transition-all shadow-sm active:scale-95"
+                                                title="Remover Logotipo"
+                                            >
+                                                <Trash2 size={18} />
+                                            </button>
+                                        )}
                                     </div>
                                     <p className="mt-2 text-[10px] text-stone-400 uppercase tracking-wider font-bold italic">Exibido na Navbar e Rodapé. Mantém proporção original.</p>
                                 </div>
