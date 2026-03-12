@@ -13,13 +13,13 @@ export const Navbar: React.FC<NavbarProps> = ({ isContentReleased }) => {
   const [isScrolled, setIsScrolled] = useState(false);
 
   return (
-    <nav className="bg-stone-950/80 backdrop-blur-xl border-b border-white/5 sticky top-0 z-50 transition-all duration-500">
+    <nav className="bg-white/80 backdrop-blur-xl border-b border-stone-200 sticky top-0 z-50 transition-all duration-500">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className={`flex h-20 items-center transition-all duration-700 ${isContentReleased ? 'justify-between' : 'justify-center'}`}>
           <div className="flex-shrink-0 flex items-center gap-3">
-            <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center text-stone-950 font-serif text-xl">FS</div>
+            <div className="w-10 h-10 bg-stone-900 rounded-full flex items-center justify-center text-white font-serif text-xl">FS</div>
             <div className="flex flex-col">
-              <span className="font-serif text-xl text-white tracking-wide leading-none">Face Slim</span>
+              <span className="font-serif text-xl text-stone-900 tracking-wide leading-none">Face Slim</span>
               <span className="text-[10px] font-sans tracking-[0.2em] font-bold uppercase text-brand-gold mt-1">Dossiê Clínico</span>
             </div>
           </div>
@@ -45,7 +45,7 @@ export const Navbar: React.FC<NavbarProps> = ({ isContentReleased }) => {
 
                 <button
                   onClick={() => setIsMenuOpen(!isMenuOpen)}
-                  className="md:hidden p-2 text-stone-400 hover:text-white transition-colors"
+                  className="md:hidden p-2 text-stone-500 hover:text-stone-900 transition-colors"
                   aria-label="Toggle menu"
                 >
                   {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -64,10 +64,10 @@ export const Navbar: React.FC<NavbarProps> = ({ isContentReleased }) => {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3, ease: 'easeInOut' }}
-            className="md:hidden border-t border-white/5 bg-stone-950 overflow-hidden"
+            className="md:hidden border-t border-stone-100 bg-white overflow-hidden"
           >
             <div className="px-4 py-8 space-y-6 text-center">
-              <p className="text-stone-400 text-sm font-medium italic mb-4">
+              <p className="text-stone-500 text-sm font-medium italic mb-4">
                 Fale agora com nossa equipe clínica.
               </p>
               <div className="pt-4">

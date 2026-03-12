@@ -5,24 +5,24 @@ import { useConfig } from './ConfigProvider';
 export const CTA = () => {
   const { config } = useConfig();
   return (
-    <section id="agendar" className="relative py-24 overflow-hidden bg-stone-900">
+    <section id="agendar" className="relative py-24 overflow-hidden bg-stone-50">
       {/* Background Decorative Elements - Expanded for full width */}
       <div className="absolute inset-0 -z-10">
-        <div className="absolute top-0 right-0 w-1/2 h-full bg-stone-800 skew-x-12 translate-x-1/4" />
+        <div className="absolute top-0 right-0 w-1/2 h-full bg-white skew-x-12 translate-x-1/4" />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-5xl mx-auto bg-stone-900 border border-white/5 rounded-xl p-12 md:p-20 text-center relative overflow-hidden">
+        <div className="max-w-5xl mx-auto bg-white border border-stone-100 rounded-[3rem] p-12 md:p-20 text-center relative overflow-hidden">
           {/* Subtle glow */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-brand-gold/20 rounded-full blur-[100px] -z-10" />
 
           <div className="max-w-3xl mx-auto">
             <span className="text-[10px] font-bold uppercase tracking-[0.4em] text-brand-gold mb-6 block">Inicie sua Jornada</span>
-            <h2 className="text-4xl md:text-6xl font-medium mb-8 text-white leading-tight">
+            <h2 className="text-4xl md:text-6xl font-medium mb-8 text-stone-900 leading-tight">
               Pronta para reencontrar sua <br className="hidden md:block" />
               <span className="italic font-light text-stone-500">melhor versão?</span>
             </h2>
-            <p className="text-stone-400 mb-12 text-lg font-light leading-relaxed max-w-2xl mx-auto">
+            <p className="text-stone-500 mb-12 text-lg font-light leading-relaxed max-w-2xl mx-auto">
               Agende uma avaliação estrutural personalizada e descubra como o Método Face Slim pode transformar sua autoimagem com naturalidade e elegância.
             </p>
 
@@ -39,22 +39,22 @@ export const CTA = () => {
               </a>
             </div>
 
-            <div className="mt-16 pt-12 border-t border-white/5 grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div className="mt-16 pt-12 border-t border-stone-100 grid grid-cols-2 md:grid-cols-4 gap-8">
               <div className="text-center">
-                <span className="block text-2xl font-serif text-white mb-1">10+</span>
-                <span className="text-[10px] uppercase tracking-widest text-stone-500 font-bold">Anos de Duração</span>
+                <span className="block text-2xl font-serif text-stone-900 mb-1">10+</span>
+                <span className="text-[10px] uppercase tracking-widest text-stone-400 font-bold">Anos de Duração</span>
               </div>
               <div className="text-center">
-                <span className="block text-2xl font-serif text-white mb-1">100%</span>
-                <span className="text-[10px] uppercase tracking-widest text-stone-500 font-bold">Naturalidade</span>
+                <span className="block text-2xl font-serif text-stone-900 mb-1">100%</span>
+                <span className="text-[10px] uppercase tracking-widest text-stone-400 font-bold">Naturalidade</span>
               </div>
               <div className="text-center">
-                <span className="block text-2xl font-serif text-white mb-1">0%</span>
-                <span className="text-[10px] uppercase tracking-widest text-stone-500 font-bold">Artificialidade</span>
+                <span className="block text-2xl font-serif text-stone-900 mb-1">0%</span>
+                <span className="text-[10px] uppercase tracking-widest text-stone-400 font-bold">Artificialidade</span>
               </div>
               <div className="text-center">
-                <span className="block text-2xl font-serif text-white mb-1">Exclusivo</span>
-                <span className="text-[10px] uppercase tracking-widest text-stone-500 font-bold">Método Face Slim</span>
+                <span className="block text-2xl font-serif text-stone-900 mb-1">Exclusivo</span>
+                <span className="text-[10px] uppercase tracking-widest text-stone-400 font-bold">Método Face Slim</span>
               </div>
             </div>
           </div>

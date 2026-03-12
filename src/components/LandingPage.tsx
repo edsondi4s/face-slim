@@ -37,7 +37,7 @@ export const LandingPage = () => {
     }, []);
 
     return (
-        <div className="min-h-screen flex flex-col selection:bg-brand-gold/20 selection:text-white bg-stone-950">
+        <div className="min-h-screen flex flex-col selection:bg-brand-gold/20 selection:text-stone-900 bg-stone-50">
             <SEO />
             <Navbar isContentReleased={isContentReleased} />
 
@@ -45,11 +45,11 @@ export const LandingPage = () => {
                 {/* VSL Section */}
                 <section id="vsl" className="py-20 space-y-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
                     <div className="max-w-4xl mx-auto px-4">
-                        <h1 className="text-5xl md:text-7xl font-medium mb-8 leading-[1.1] text-white">
+                        <h1 className="text-5xl md:text-7xl font-medium mb-8 leading-[1.1] text-stone-900">
                             O Resgate da sua <br />
-                            <span className="italic font-light text-stone-400">Identidade Original</span>
+                            <span className="italic font-light text-stone-500">Identidade Original</span>
                         </h1>
-                        <p className="text-xl text-stone-400 max-w-2xl mx-auto font-light leading-relaxed">
+                        <p className="text-xl text-stone-500 max-w-2xl mx-auto font-light leading-relaxed">
                             Assista ao dossiê clínico e descubra como o Método Face Slim restaura a estrutura profunda da face.
                         </p>
                     </div>
@@ -89,7 +89,7 @@ export const LandingPage = () => {
             </main>
 
             {isContentReleased && (
-                <div className="md:hidden fixed bottom-0 left-0 w-full p-4 z-40 bg-stone-950/80 backdrop-blur-lg border-t border-white/5">
+                <div className="md:hidden fixed bottom-0 left-0 w-full p-4 z-40 bg-white/80 backdrop-blur-lg border-t border-stone-200">
                     <a
                         href={config.whatsappUrl}
                         target="_blank"

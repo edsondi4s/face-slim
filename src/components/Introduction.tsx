@@ -6,17 +6,17 @@ export const Introduction = () => {
     <section id="introducao" className="py-24 px-4">
       <div className="grid lg:grid-cols-2 gap-20 items-center">
         <div className="relative">
-          <div className="aspect-[4/5] rounded-[0.5rem] overflow-hidden premium-shadow">
+          <div className="aspect-[4/5] rounded-[3rem] overflow-hidden premium-shadow">
             <img
               src="https://images.unsplash.com/photo-1596755389378-c31d21fd1273?auto=format&fit=crop&q=80&w=1000"
               alt="Modelo sorridente exibindo resultados naturais de rejuvenescimento facial"
-              className="w-full h-full object-cover grayscale-[0.2] hover:grayscale-0 transition-all duration-700"
+              className="w-full h-full object-cover grayscale-[0.5] hover:grayscale-0 transition-all duration-700"
               referrerPolicy="no-referrer"
             />
           </div>
-          <div className="absolute -bottom-10 -right-10 bg-stone-900 p-8 rounded-[0.5rem] border border-white/5 premium-shadow max-w-xs hidden md:block">
+          <div className="absolute -bottom-10 -right-10 bg-white p-8 rounded-[2rem] border border-stone-100 premium-shadow max-w-xs hidden md:block">
             <Quote className="text-brand-gold mb-4 opacity-50" size={32} />
-            <p className="text-stone-300 italic font-serif text-lg leading-relaxed">
+            <p className="text-stone-600 italic font-serif text-lg leading-relaxed">
               "A verdadeira beleza não é sobre mudar quem você é, mas sobre revelar sua melhor versão que o tempo ocultou."
             </p>
           </div>
@@ -25,11 +25,11 @@ export const Introduction = () => {
         <div className="space-y-10">
           <div>
             <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-brand-gold mb-4 block">Filosofia de Restauração</span>
-            <h2 className="text-4xl md:text-6xl font-medium text-white leading-tight mb-8">
+            <h2 className="text-4xl md:text-6xl font-medium text-stone-900 leading-tight mb-8">
               O Rejuvenescimento <br />
               <span className="italic font-light text-stone-500">Estrutural Profundo</span>
             </h2>
-            <p className="text-xl text-stone-400 font-light leading-relaxed">
+            <p className="text-xl text-stone-500 font-light leading-relaxed">
               O Face Slim não é apenas um procedimento; é uma filosofia de restauração. Diferente de tecnologias temporárias, nós tratamos a flacidez na sua origem, devolvendo a firmeza que o tempo ocultou.
             </p>
           </div>
@@ -41,17 +41,17 @@ export const Introduction = () => {
               "Resultados de Longa Duração",
               "Abordagem Personalizada"
             ].map((item, i) => (
-              <div key={i} className="flex items-center gap-4 p-4 rounded-xl bg-stone-900 border border-white/5">
-                <div className="w-8 h-8 rounded-full bg-stone-800 flex items-center justify-center text-brand-gold shadow-sm">
+              <div key={i} className="flex items-center gap-4 p-4 rounded-xl bg-white border border-stone-100">
+                <div className="w-8 h-8 rounded-full bg-stone-50 flex items-center justify-center text-brand-gold shadow-sm">
                   <Check size={16} />
                 </div>
-                <span className="text-sm font-medium text-stone-300 tracking-wide">{item}</span>
+                <span className="text-sm font-medium text-stone-600 tracking-wide">{item}</span>
               </div>
             ))}
           </div>
 
           <div className="pt-6">
-            <a href="#diagnostico" className="inline-flex items-center gap-2 text-white font-bold text-xs uppercase tracking-[0.2em] border-b-2 border-brand-gold pb-2 hover:text-brand-gold transition-all">
+            <a href="#diagnostico" className="inline-flex items-center gap-2 text-stone-900 font-bold text-xs uppercase tracking-[0.2em] border-b-2 border-brand-gold pb-2 hover:text-brand-gold transition-all">
               Conhecer a Ciência por trás
             </a>
           </div>

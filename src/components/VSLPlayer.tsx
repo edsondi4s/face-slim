@@ -67,7 +67,7 @@ export const VSLPlayer: React.FC<VSLPlayerProps> = ({ onReveal }) => {
     };
 
     return (
-        <div className="relative w-full aspect-video rounded-none overflow-hidden bg-stone-900 shadow-2xl group border border-white/5">
+        <div className="relative w-full aspect-video rounded-[3rem] overflow-hidden bg-stone-100 shadow-2xl group border border-white">
             <YouTube
                 videoId={config.vsl.videoId}
                 opts={opts}

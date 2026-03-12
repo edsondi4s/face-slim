@@ -12,8 +12,8 @@ const FAQItem: React.FC<FAQItemProps> = ({ question, answer }) => {
 
   return (
     <div className={cn(
-      "border-b border-white/5 transition-all duration-500",
-      isOpen ? "bg-stone-900/50" : "bg-transparent"
+      "border-b border-stone-100 transition-all duration-500",
+      isOpen ? "bg-stone-50" : "bg-transparent"
     )}>
       <button
         onClick={() => setIsOpen(!isOpen)}
@@ -21,13 +21,13 @@ const FAQItem: React.FC<FAQItemProps> = ({ question, answer }) => {
       >
         <span className={cn(
           "text-xl font-medium transition-colors duration-300",
-          isOpen ? "text-white" : "text-stone-500 group-hover:text-stone-300"
+          isOpen ? "text-stone-900" : "text-stone-500 group-hover:text-stone-700"
         )}>
           {question}
         </span>
         <div className={cn(
           "w-8 h-8 rounded-lg flex items-center justify-center transition-all duration-300",
-          isOpen ? "bg-brand-gold text-stone-950 rotate-180" : "bg-stone-900 text-stone-500 group-hover:bg-stone-800"
+          isOpen ? "bg-stone-900 text-white rotate-180" : "bg-stone-100 text-stone-400 group-hover:bg-stone-200"
         )}>
           {isOpen ? <Minus size={16} /> : <Plus size={16} />}
         </div>
@@ -38,7 +38,7 @@ const FAQItem: React.FC<FAQItemProps> = ({ question, answer }) => {
           isOpen ? "max-h-[500px] opacity-100 pb-8" : "max-h-0 opacity-0"
         )}
       >
-        <p className="text-stone-400 leading-relaxed font-light text-lg max-w-2xl">
+        <p className="text-stone-500 leading-relaxed font-light text-lg max-w-2xl">
           {answer}
         </p>
       </div>
@@ -71,13 +71,13 @@ export const FAQ = () => {
       <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
         <div className="max-w-xl">
           <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-brand-gold mb-4 block">Esclarecimentos</span>
-          <h2 className="text-4xl md:text-5xl font-medium text-white">Dúvidas Frequentes</h2>
+          <h2 className="text-4xl md:text-5xl font-medium text-stone-900">Dúvidas Frequentes</h2>
         </div>
-        <p className="text-stone-400 font-light text-sm">
+        <p className="text-stone-500 font-light text-sm">
           Informações essenciais para sua <br className="hidden md:block" /> tomada de decisão.
         </p>
       </div>
-      <div className="border-t border-white/5">
+      <div className="border-t border-stone-100">
         {faqs.map((faq, index) => (
           <FAQItem key={index} question={faq.question} answer={faq.answer} />
         ))}

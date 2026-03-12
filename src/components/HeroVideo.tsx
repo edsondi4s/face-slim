@@ -11,21 +11,21 @@ export const HeroVideo = () => {
       </div>
 
       <div className="max-w-4xl mx-auto px-4">
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-stone-900 border border-white/5 text-brand-gold text-[11px] font-bold uppercase tracking-[0.2em] mb-8">
+        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-stone-100 text-brand-gold text-[11px] font-bold uppercase tracking-[0.2em] mb-8 shadow-sm">
           <Sparkles size={14} />
           Apresentação Exclusiva
         </div>
-        <h1 className="text-5xl md:text-7xl font-medium mb-8 leading-[1.1] text-white">
+        <h1 className="text-5xl md:text-7xl font-medium mb-8 leading-[1.1] text-stone-900">
           O Resgate da sua <br />
           <span className="italic font-light text-stone-400">Identidade Original</span>
         </h1>
-        <p className="text-xl text-stone-400 max-w-2xl mx-auto font-light leading-relaxed">
+        <p className="text-xl text-stone-500 max-w-2xl mx-auto font-light leading-relaxed">
           Assista ao dossiê clínico e descubra como o Método Face Slim restaura a estrutura profunda da face para um resultado natural e duradouro.
         </p>
       </div>
 
       <div className="relative max-w-5xl mx-auto px-4">
-        <div className="relative video-shadow rounded-xl overflow-hidden bg-stone-950 aspect-video group cursor-pointer border border-white/5">
+        <div className="relative video-shadow rounded-[3rem] overflow-hidden bg-stone-100 aspect-video group cursor-pointer border border-white shadow-2xl">
           {/* Video Poster Image Placeholder */}
           <img
             src="https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?auto=format&fit=crop&q=80&w=2000"

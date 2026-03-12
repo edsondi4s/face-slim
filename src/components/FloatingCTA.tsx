@@ -16,7 +16,7 @@ export const FloatingCTA: React.FC<FloatingCTAProps> = ({ show }) => {
                     initial={{ opacity: 0, y: 100 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: 100 }}
-                    className="fixed bottom-8 right-8 z-50 hidden md:flex flex-col items-end gap-4"
+                    className="fixed bottom-8 right-8 z-50 flex flex-col items-end gap-4"
                 >
                     <a
                         href={config.whatsappUrl}
