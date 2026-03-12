@@ -94,7 +94,7 @@ export const LandingPage = () => {
                         href={config.whatsappUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center justify-center gap-3 w-full text-center bg-brand-gold text-stone-950 py-4 rounded-xl font-bold uppercase tracking-widest shadow-xl active:scale-95 transition-transform"
+                        className="flex items-center justify-center gap-3 w-full text-center bg-[#25D366] text-white py-4 rounded-xl font-bold uppercase tracking-widest shadow-xl active:scale-95 transition-transform"
                     >
                         <MessageCircle size={20} />
                         Agendar Avaliação

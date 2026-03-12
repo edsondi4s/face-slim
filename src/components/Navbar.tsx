@@ -40,7 +40,7 @@ export const Navbar: React.FC<NavbarProps> = ({ isContentReleased }) => {
                     href={config.whatsappUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="bg-brand-gold hover:bg-amber-500 text-stone-950 px-6 py-2.5 rounded-full text-sm font-semibold transition-all shadow-lg hover:shadow-xl active:scale-95 uppercase tracking-wider flex items-center gap-2"
+                    className="bg-[#25D366] hover:bg-[#128C7E] text-white px-6 py-2.5 rounded-full text-sm font-semibold transition-all shadow-lg hover:shadow-xl active:scale-95 uppercase tracking-wider flex items-center gap-2"
                   >
                     <MessageCircle size={16} />
                     Agendar Avaliação
@@ -80,7 +80,7 @@ export const Navbar: React.FC<NavbarProps> = ({ isContentReleased }) => {
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={() => setIsMenuOpen(false)}
-                  className="flex items-center justify-center gap-3 w-full text-center bg-brand-gold text-stone-950 py-4 rounded-xl font-bold uppercase tracking-widest shadow-xl active:scale-95 transition-transform"
+                  className="flex items-center justify-center gap-3 w-full text-center bg-[#25D366] text-white py-4 rounded-xl font-bold uppercase tracking-widest shadow-xl active:scale-95 transition-transform"
                 >
                   <MessageCircle size={20} />
                   Agendar Avaliação

@@ -31,7 +31,7 @@ export const CTA = () => {
                 href={config.whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-brand-gold hover:bg-amber-500 text-stone-900 px-12 py-5 rounded-full text-sm font-bold transition-all hover:scale-105 shadow-2xl hover:shadow-brand-gold/40 uppercase tracking-widest flex items-center gap-3 group"
+                className="bg-[#25D366] hover:bg-[#128C7E] text-white px-12 py-5 rounded-full text-sm font-bold transition-all hover:scale-105 shadow-2xl hover:shadow-[#25D366]/40 uppercase tracking-widest flex items-center gap-3 group"
               >
                 <MessageCircle size={18} />
                 Agendar Avaliação

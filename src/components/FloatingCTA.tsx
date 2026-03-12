@@ -22,9 +22,9 @@ export const FloatingCTA: React.FC<FloatingCTAProps> = ({ show }) => {
                         href={config.whatsappUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex bg-stone-900 text-white px-6 py-4 rounded-full shadow-2xl items-center gap-3 text-sm font-bold uppercase tracking-widest hover:bg-stone-800 transition-all active:scale-95 group"
+                        className="hidden md:flex bg-[#25D366] text-white px-6 py-4 rounded-full shadow-2xl items-center gap-3 text-sm font-bold uppercase tracking-widest hover:bg-[#128C7E] transition-all active:scale-95 group"
                     >
-                        <MessageCircle size={20} className="text-brand-gold group-hover:scale-110 transition-transform" />
+                        <MessageCircle size={20} className="text-white group-hover:scale-110 transition-transform" />
                         Agendar Avaliação
                     </a>
                 </motion.div>
