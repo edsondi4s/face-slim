@@ -25,7 +25,7 @@ export const HeroVideo = () => {
       </div>
 
       <div className="relative max-w-5xl mx-auto px-4">
-        <div className="relative video-shadow rounded-[3rem] overflow-hidden bg-stone-100 aspect-video group cursor-pointer border border-white shadow-2xl">
+        <div className="relative video-shadow rounded-2xl overflow-hidden bg-stone-100 aspect-video group cursor-pointer border border-white shadow-2xl">
           {/* Video Poster Image Placeholder */}
           <img
             src="https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?auto=format&fit=crop&q=80&w=2000"
@@ -48,8 +48,8 @@ export const HeroVideo = () => {
         </div>
 
         {/* Decorative elements */}
-        <div className="absolute -bottom-6 -right-6 w-32 h-32 border-r-2 border-b-2 border-brand-gold/30 rounded-br-[2rem] -z-10" />
-        <div className="absolute -top-6 -left-6 w-32 h-32 border-l-2 border-t-2 border-brand-gold/30 rounded-tl-[2rem] -z-10" />
+        <div className="absolute -bottom-6 -right-6 w-32 h-32 border-r-2 border-b-2 border-brand-gold/30 rounded-br-2xl -z-10" />
+        <div className="absolute -top-6 -left-6 w-32 h-32 border-l-2 border-t-2 border-brand-gold/30 rounded-tl-2xl -z-10" />
       </div>
 
       <div className="flex flex-col items-center gap-4 pt-12">
